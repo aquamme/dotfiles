@@ -10,6 +10,9 @@ set cursorcolumn
 " Highlights current cursor row
 set cursorline
 
+" Highlight search term
+set hlsearch
+
 " Purty
 colorscheme molokai
 
