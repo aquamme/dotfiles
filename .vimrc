@@ -11,7 +11,15 @@ set ruler
 set laststatus=2 " Display current line and column in status line
 set relativenumber " Display relative line number 
 colorscheme molokai
+
+""" Syntax related """
 syntax on
+map <F3> :execute "set syntax=html" <CR>
+map <F4> :execute "set syntax=javascript" <CR>
+map <F5> :execute "set syntax=ruby" <CR>
+
+" Toggle relative line numbers
+map <F12> :execute "set relativenumber!" <CR>
 
 " Highlight status line for currently active view
 hi StatusLine term=bold,reverse cterm=bold ctermbg=101 ctermfg=16 gui=bold guibg=#808070 guifg=#000000
