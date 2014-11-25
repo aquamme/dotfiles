@@ -14,9 +14,9 @@ colorscheme molokai
 
 """ Syntax related """
 syntax on
-map <F3> :execute "set syntax=html" <CR>
-map <F4> :execute "set syntax=javascript" <CR>
-map <F5> :execute "set syntax=ruby" <CR>
+map <F4> :execute "set syntax=html" <CR>
+map <F5> :execute "set syntax=javascript" <CR>
+map <F6> :execute "set syntax=ruby" <CR>
 
 " Toggle relative line numbers
 map <F12> :execute "set relativenumber!" <CR>
@@ -32,5 +32,23 @@ map <C-F> <C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E><C-E>
 map <C-B> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
 
 """ Plugins """
-" CtrlP plugin
-set runtimepath^=~/.vim/plugins/ctrlp.vim
+execute pathogen#infect()
+map <C-n> :NERDTreeToggle<CR>
+set wildignore+=*/tmp/*,*.swp,*/vendor/*
+
+" jshint validation
+nnoremap <silent><F1> :JSHint<CR>
+inoremap <silent><F1> <C-O>:JSHint<CR>
+vnoremap <silent><F1> :JSHint<CR>
+
+" show next jshint error
+nnoremap <silent><F2> :lnext<CR>
+inoremap <silent><F2> <C-O>:lnext<CR>
+vnoremap <silent><F2> :lnext<CR>
+
+" show previous jshint error
+nnoremap <silent><F3> :lprevious<CR>
+inoremap <silent><F3> <C-O>:lprevious<CR>
+vnoremap <silent><F3> :lprevious<CR>
+
+let jshint2_save = 1
