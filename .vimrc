@@ -33,7 +33,6 @@ map <C-B> <C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y><C-Y>
 
 """ Plugins """
 execute pathogen#infect()
-map <C-n> :NERDTreeToggle<CR>
 set wildignore+=*/tmp/*,*.swp,*/vendor/*
 
 " jshint validation
