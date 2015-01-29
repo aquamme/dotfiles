@@ -9,13 +9,14 @@ set ttyfast
 set ruler
 set laststatus=2 " Display current line and column in status line
 set relativenumber " Display relative line number 
-colorscheme molokai
+set directory=$HOME/.vim/swapfiles// " swapfile location
 
 " Move between wrapped lines with j and k
 nnoremap j gj
 nnoremap k gk
 
 """ Syntax related """
+colorscheme molokai
 syntax on
 nnoremap <F4> :execute "set syntax=html" <CR>
 nnoremap <F5> :execute "set syntax=javascript" <CR>
@@ -30,7 +31,7 @@ hi StatusLineNC term=reverse cterm=NONE ctermbg=59 ctermfg=16 gui=italic guibg=#
 
 """ Plugins """
 execute pathogen#infect()
-set wildignore+=*/tmp/*,*.swp,*/vendor/*
+set wildignore+=*/tmp/*,*.swp,*/vendor/*,*/bower_components/*,*/node_modules/*,*/dist/*
 
 " jshint validation
 nnoremap <silent><F1> :JSHint<CR>
@@ -48,4 +49,4 @@ inoremap <silent><F3> <C-O>:lprevious<CR>
 vnoremap <silent><F3> :lprevious<CR>
 
 let jshint2_save = 1
-let jshint2_height = 10
+let jshint2_height = 3
