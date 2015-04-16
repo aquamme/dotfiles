@@ -32,6 +32,12 @@ hi StatusLineNC term=reverse cterm=NONE ctermbg=59 ctermfg=16 gui=italic guibg=#
 """ Plugins """
 execute pathogen#infect()
 set wildignore+=*/tmp/*,*.swp,*/vendor/*,*/bower_components/*,*/node_modules/*,*/dist/*
+let g:ctrlp_user_command = {
+	\ 'types': {
+		\ 1: ['.git', 'cd %s && git ls-files -co --exclude-standard']
+		\ },
+	\ 'fallback': 'find %s -type f'
+	\ }
 
 " jshint validation
 nnoremap <silent><F1> :JSHint<CR>
