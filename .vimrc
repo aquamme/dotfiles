@@ -1,37 +1,47 @@
-set nocompatible " Vi is old
-set t_Co=256 " 256 terminal colors
-set cursorcolumn " Highlights current cursor column
-set cursorline " Highlights current cursor row
-set hlsearch " Highlight search term
-set wildmenu " filename tab completion in cmd mode
+set nocompatible
+set t_Co=256
+set cursorcolumn
+set cursorline
+set hlsearch
+set wildmenu
 set wildmode=list:longest,full
 set ttyfast
 set ruler
-set laststatus=2 " Display current line and column in status line
-set relativenumber " Display relative line number 
-set directory=$HOME/.vim/swapfiles// " swapfile location
+set laststatus=2
+"set relativenumber
+set nu
+set directory=$HOME/.vim/swapfiles//
 
-" Move between wrapped lines with j and k
+set autoindent
+set backspace=indent,eol,start
+
+set expandtab
+
+set incsearch
+" Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
+endif
+
+
+
 nnoremap j gj
 nnoremap k gk
 
-""" Syntax related """
 colorscheme molokai
 syntax on
-nnoremap <F4> :execute "set syntax=html" <CR>
-nnoremap <F5> :execute "set syntax=javascript" <CR>
-nnoremap <F6> :execute "set syntax=ruby" <CR>
-
-" Toggle relative line numbers
-nnoremap <F12> :execute "set relativenumber!" <CR>
 
 " Highlight status line for currently active view
 hi StatusLine term=bold,reverse cterm=bold ctermbg=101 ctermfg=16 gui=bold guibg=#808070 guifg=#000000
 hi StatusLineNC term=reverse cterm=NONE ctermbg=59 ctermfg=16 gui=italic guibg=#404c4c guifg=#000000
 
-""" Plugins """
 execute pathogen#infect()
 set wildignore+=*/tmp/*,*.swp,*/vendor/*,*/bower_components/*,*/node_modules/*,*/dist/*
+
+let g:neomake_javascript_enabled_makers = ['eslint']
+let g:neomake_php_enabled_makers = ['php']
+autocmd! BufWritePost * Neomake
+
 let g:ctrlp_user_command = {
 	\ 'types': {
 		\ 1: ['.git', 'cd %s && git ls-files -co --exclude-standard']
@@ -39,20 +49,12 @@ let g:ctrlp_user_command = {
 	\ 'fallback': 'find %s -type f'
 	\ }
 
-" jshint validation
-nnoremap <silent><F1> :JSHint<CR>
-inoremap <silent><F1> <C-O>:JSHint<CR>
-vnoremap <silent><F1> :JSHint<CR>
 
-" show next jshint error
-nnoremap <silent><F2> :lnext<CR>
-inoremap <silent><F2> <C-O>:lnext<CR>
-vnoremap <silent><F2> :lnext<CR>
+function! IPhpInsertUse()
+    call PhpInsertUse()
+    call feedkeys('a',  'n')
+endfunction
+autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
+autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
 
-" show previous jshint error
-nnoremap <silent><F3> :lprevious<CR>
-inoremap <silent><F3> <C-O>:lprevious<CR>
-vnoremap <silent><F3> :lprevious<CR>
-
-let jshint2_save = 1
-let jshint2_height = 3
+set tags+=tags
