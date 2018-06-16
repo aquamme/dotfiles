@@ -8,9 +8,9 @@ set wildmode=list:longest,full
 set ttyfast
 set ruler
 set laststatus=2
-"set relativenumber
 set nu
 set directory=$HOME/.vim/swapfiles//
+
 
 set autoindent
 set backspace=indent,eol,start
@@ -39,7 +39,6 @@ execute pathogen#infect()
 set wildignore+=*/tmp/*,*.swp,*/vendor/*,*/bower_components/*,*/node_modules/*,*/dist/*
 
 let g:neomake_javascript_enabled_makers = ['eslint']
-let g:neomake_php_enabled_makers = ['php']
 autocmd! BufWritePost * Neomake
 
 let g:ctrlp_user_command = {
@@ -48,13 +47,3 @@ let g:ctrlp_user_command = {
 		\ },
 	\ 'fallback': 'find %s -type f'
 	\ }
-
-
-function! IPhpInsertUse()
-    call PhpInsertUse()
-    call feedkeys('a',  'n')
-endfunction
-autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
-autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
-
-set tags+=tags
