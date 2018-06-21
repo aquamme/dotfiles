@@ -1,0 +1,9 @@
+[submodule "vim/.vim/ctrlp.vim"]
+	path = vim/.vim/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule "vim/.vim/neomake"]
+	path = vim/.vim/neomake
+	url = https://github.com/neomake/neomake.git
+[submodule "vim/.vim/vim-vinegar"]
+	path = vim/.vim/vim-vinegar
+	url = https://github.com/tpope/vim-vinegar.git
