@@ -67,11 +67,29 @@
 (use-package general
   :ensure t
   :config
+
+    ;; spacemacs-ish keybindings 
     (general-define-key
       :states '(normal visual insert emacs)
       :prefix "SPC"
       :non-normal-prefix "M-SPC"
-      "SPC" '(helm-M-x :which-key "M-x")))
+      "SPC" '(helm-M-x :which-key "M-x")
+      "u"   'universal-argument)
+
+    ;; vinegar-ish behavior
+    (general-define-key
+     :states '(normal emacs)
+     :keymaps 'dired-mode-map
+     "-" 'dired-jump)
+    
+    (general-define-key
+     :keymaps 'evil-motion-state-map
+     "C-u" 'evil-scroll-up)
+
+    )
+     
+      
+ 
 
 
 (custom-set-variables
