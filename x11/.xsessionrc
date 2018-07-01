@@ -1,2 +1,8 @@
 xmodmap ~/.Xmodmap
-xsetroot -solid black
+
+bgscript="$HOME/.fehbg"
+if [ -e $bgscript ]; then
+  `$bgscript`
+else
+  xsetroot -solid black
+fi
