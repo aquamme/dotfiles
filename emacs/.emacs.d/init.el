@@ -74,6 +74,9 @@
       :prefix "SPC"
       :non-normal-prefix "M-SPC"
       "SPC" '(helm-M-x :which-key "M-x")
+      "fed" (lambda ()
+	      (interactive)
+	      (evil-edit (concat user-emacs-directory "init.el")))
       "u"   'universal-argument)
     
     (general-define-key
