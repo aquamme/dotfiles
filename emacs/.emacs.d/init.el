@@ -75,17 +75,19 @@
       :non-normal-prefix "M-SPC"
       "SPC" '(helm-M-x :which-key "M-x")
       "u"   'universal-argument)
-
-    ;; vinegar-ish behavior
-    (general-define-key
-     :states '(normal emacs)
-     :keymaps 'dired-mode-map
-     "-" 'dired-jump)
     
     (general-define-key
      :keymaps 'evil-motion-state-map
      "C-u" 'evil-scroll-up)
 
+    ;; vinegar-ish behavior
+    (general-define-key
+     :states '(normal emacs)
+     "-" 'dired-jump)
+    (general-define-key
+     :keymaps 'dired-mode-map
+     "-" 'dired-jump)
+    
     )
      
       
