@@ -3,10 +3,6 @@
 # Meta
 set $mod Mod4
 
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -108,6 +104,18 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+## On startup
+exec --no-startup-id emacs --daemon
+
+###########################################################################
+#
+#
+#  Appearance
+#
+#
+###########################################################################
+set_from_resource $font i3wm.font pango:DejaVu Sans Mono 10
+font $font
 # class                 border  backgr. text    indicator child_border
 client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
@@ -138,5 +146,3 @@ bar {
 }
 
 
-## On startup
-exec --no-startup-id emacs --daemon

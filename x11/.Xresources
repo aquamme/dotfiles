@@ -1,0 +1,12 @@
+*font: xft:Source Code Pro:size=12:antialias=true:hinting=true
+*boldFont: xft:Source Code Pro:size=12:antialias=true:hinting=true
+*italicFont: xft:Source Code Pro:style=Oblique:size=12:antialias=true:hinting=true
+*boldItalicFont: xft:Source Code Pro:style=Bold Oblique:size=12:antialias=true:hinting=true
+*letterSpace: -2
+
+emacs*font: Source Code Pro:size=12:antialias=true:hinting=true:pixelsize=16
+emacs*boldFont: Source Code Pro:size=12:antialias=true:hinting=true:pixelsize=16
+emacs*italicFont: Source Code Pro:style=Oblique:size=12:antialias=true:hinting=true:pixelsize=16
+emacs*boldItalicFont: Source Code Pro:style=Bold Oblique:size=12:antialias=true:hinting=true:pixelsize=16
+
+URxvt.scrollBar: false

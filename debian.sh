@@ -6,6 +6,7 @@ apt install \
     fish \
     htop \
     i3 \
+    rxvt-unicode \
     silversearcher-ag \
     stow \
     tig \
