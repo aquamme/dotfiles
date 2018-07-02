@@ -1,8 +1,8 @@
 xmodmap ~/.Xmodmap
 
-bgscript="$HOME/.fehbg"
-if [ -e $bgscript ]; then
-  `$bgscript`
+pywal="$HOME/.local/bin/wal"
+if [ -e $pywal ]; then
+  `$pywal -R`
 else
   xsetroot -solid black
 fi

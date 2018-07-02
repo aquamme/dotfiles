@@ -4,6 +4,7 @@
 *boldItalicFont: xft:Source Code Pro:style=Bold Oblique:size=12:antialias=true:hinting=true
 *letterSpace: -2
 
+! https://bugs.launchpad.net/ubuntu/+source/emacs23/+bug/931849
 emacs*font: Source Code Pro:size=12:antialias=true:hinting=true:pixelsize=16
 emacs*boldFont: Source Code Pro:size=12:antialias=true:hinting=true:pixelsize=16
 emacs*italicFont: Source Code Pro:style=Oblique:size=12:antialias=true:hinting=true:pixelsize=16
