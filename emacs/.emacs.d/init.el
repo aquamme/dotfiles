@@ -43,6 +43,12 @@
   :config
   (evil-mode t))
 
+(use-package evil-collection
+  :after 'evil
+  :ensure t
+  :config
+  (evil-collection-init))
+
 (use-package helm
   :ensure t
   :init
@@ -51,13 +57,24 @@
   (setq helm-candidate-number-list 50))
 
 (use-package projectile
-  :ensure t)
+  :ensure t
+  :config
+  (setq projectile-use-git-grep t)
+  (projectile-mode))
+
+(use-package helm-projectile
+  :ensure t
+  :config
+  (helm-projectile-on))
 
 (use-package which-key
   :ensure t
   :init
   (setq which-key-separator " ")
   (setq which-key-prefix-prefix "+")
+  (setq which-key-max-display-columns nil)
+  (setq which-key-side-window-max-width 0.5)
+  (setq which-key-side-window-location 'right)
   :config
   (which-key-mode))
 
@@ -77,7 +94,9 @@
       "fed" (lambda ()
 	      (interactive)
 	      (evil-edit (concat user-emacs-directory "init.el")))
-      "u"   'universal-argument)
+      "u"   'universal-argument
+      "p" '(:keymap projectile-command-map :wk "projectile prefix")
+      )
     
     (general-define-key
      :keymaps 'evil-motion-state-map
@@ -107,7 +126,7 @@
     ("c3c0a3702e1d6c0373a0f6a557788dfd49ec9e66e753fb24493579859c8e95ab" default)))
  '(package-selected-packages
    (quote
-    (rainbow-mode projectile general which-key helm use-package evil-visual-mark-mode))))
+    (helm-projectile evil-collection rainbow-mode projectile general which-key helm use-package evil-visual-mark-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
