@@ -1,0 +1,24 @@
+[user]
+    name = Aaron Quamme
+    email = aaron.quamme@gmail.com
+[core]
+    editor = emacsclient -t -c
+[alias]
+    b = branch
+    c = commit
+    changes = diff HEAD@{1} HEAD
+    cob = checkout -b
+    co = checkout
+    dd = difftool --dir-diff
+    d = difftool
+    diff = diff -w
+    dump = cat-file -p
+    hist = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen%cn%Creset %Cblue(%cr)%Creset' --abbrev-commit --date=relative
+    m = merge
+    mt = mergetool
+    rh = reset HEAD
+    s = status
+    type = cat-file -t
+    undo-commit = reset --soft HEAD^
+[status]
+    showUntrackedFiles = all
