@@ -10,4 +10,7 @@ emacs*boldFont: Source Code Pro:size=12:antialias=true:hinting=true:pixelsize=16
 emacs*italicFont: Source Code Pro:style=Oblique:size=12:antialias=true:hinting=true:pixelsize=16
 emacs*boldItalicFont: Source Code Pro:style=Bold Oblique:size=12:antialias=true:hinting=true:pixelsize=16
 
+URxvt.background: #000000
+URxvt.borderColor: #000000
+URxvt.foreground: #EFEFEF
 URxvt.scrollBar: false

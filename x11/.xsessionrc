@@ -1,11 +1,6 @@
 xmodmap ~/.Xmodmap
 
-pywal="$HOME/.local/bin/wal"
-if [ -e $pywal ]; then
-  `$pywal -R`
-else
-  xsetroot -solid black
-fi
+xsetroot -solid black
 
 if command -v compton; then
   compton -b -i 0.9 -e 0.9
