@@ -116,7 +116,7 @@ bar {
     position top
 }
 
-exec xsetroot -solid black
-exec compton -b -i 0.9 -e 0.9
-exec emacs --daemon
-exec wicd-gtk -t &
+exec --no-startup-id xsetroot -solid black
+exec --no-startup-id compton -b -i 0.9 -e 0.9
+exec --no-startup-id emacs --daemon
+exec --no-startup-id wicd-gtk -t &
