@@ -104,9 +104,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-## On startup
-exec --no-startup-id emacs --daemon
-
 ###########################################################################
 #
 #
@@ -172,3 +169,4 @@ bar {
         binding_mode       $bg     $bg     $cfont
     }
 }
+

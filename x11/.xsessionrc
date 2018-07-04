@@ -6,3 +6,5 @@ if [ -e $pywal ]; then
 else
   xsetroot -solid black
 fi
+
+emacs --daemon
