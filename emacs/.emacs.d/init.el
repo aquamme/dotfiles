@@ -102,13 +102,15 @@
      :keymaps 'evil-motion-state-map
      "C-u" 'evil-scroll-up)
 
-    ;; vinegar-ish behavior
     (general-define-key
      :states '(normal emacs)
      "-" 'dired-jump)
     (general-define-key
      :keymaps 'dired-mode-map
-     "-" 'dired-jump)
+     "-" 'dired-jump
+     "n" 'evil-search-next
+     "N" 'evil-search-previous
+     )
     
     )
      
