@@ -105,16 +105,6 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-###########################################################################
-#
-#
-#  Appearance
-#
-#
-###########################################################################
-
-#for_window [class="^.*"] border pixel 3
-
 set_from_resource $font i3wm.font pango:DejaVu Sans Mono 10
 
 font $font
@@ -125,3 +115,8 @@ bar {
     status_command i3status
     position top
 }
+
+exec xsetroot -solid black
+exec compton -b -i 0.9 -e 0.9
+exec emacs --daemon
+exec wicd-gtk -t &

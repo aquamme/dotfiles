@@ -10,4 +10,5 @@ apt install \
     silversearcher-ag \
     stow \
     tig \
+    wicd \
     wmctrl
