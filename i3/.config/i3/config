@@ -44,6 +44,12 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+d focus child
 
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+y move scratchpad
+
+# Show the first scratchpad window
+bindsym $mod+y scratchpad show
+
 # switch to workspace
 bindsym $mod+1 workspace 1
 bindsym $mod+2 workspace 2
