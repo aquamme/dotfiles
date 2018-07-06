@@ -1,100 +1,78 @@
 # i3 config file (v4)
 
-# Meta
+exec --no-startup-id xsetroot -solid black
+exec --no-startup-id compton -b -i 0.9 -e 0.9
+exec --no-startup-id emacs --daemon
+exec --no-startup-id wicd-gtk -t &
+
+bindsym XF86AudioMute exec --no-startup-id amixer -q sset Master toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 3%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 3%-
+bindsym XF86ScreenSaver exec "i3lock --color 1e0010 --show-failed-attempts --ignore-empty-password"
+
+set_from_resource $font i3wm.font pango:DejaVu Sans Mono 10
+font $font
+
+bar {
+    status_command i3status
+    position top
+}
+
 set $mod Mod4
 
-# Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return       exec i3-sensible-terminal
+bindsym $mod+backslash    exec emacsclient -c
+bindsym $mod+space        exec --no-startup-id i3-dmenu-desktop
 
-bindsym $mod+backslash exec emacsclient -c
+bindsym $mod+h            focus left
+bindsym $mod+j            focus down
+bindsym $mod+k            focus up
+bindsym $mod+l            focus right
+bindsym $mod+m            split h
+bindsym $mod+n            split v
+bindsym $mod+f            fullscreen toggle
+bindsym $mod+s            layout stacking
+bindsym $mod+w            layout tabbed
+bindsym $mod+e            layout toggle split
+bindsym $mod+o            layout toggle all
+bindsym $mod+u            focus mode_toggle
+bindsym $mod+r            mode "resize"
+bindsym $mod+a            focus parent
+bindsym $mod+d            focus child
+bindsym $mod+y            scratchpad show
+bindsym $mod+Shift+y      move scratchpad
+bindsym $mod+Shift+h      move left
+bindsym $mod+Shift+j      move down
+bindsym $mod+Shift+k      move up
+bindsym $mod+Shift+l      move right
+bindsym $mod+Shift+u      floating toggle
+bindsym $mod+Shift+q      kill
+bindsym $mod+Shift+c      reload
+bindsym $mod+Shift+r      restart
+bindsym $mod+Shift+e      exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+1            workspace 1
+bindsym $mod+2            workspace 2
+bindsym $mod+3            workspace 3
+bindsym $mod+4            workspace 4
+bindsym $mod+5            workspace 5
+bindsym $mod+6            workspace 6
+bindsym $mod+7            workspace 7
+bindsym $mod+8            workspace 8
+bindsym $mod+9            workspace 9
+bindsym $mod+0            workspace 10
+bindsym $mod+Shift+1      move container to workspace 1
+bindsym $mod+Shift+2      move container to workspace 2
+bindsym $mod+Shift+3      move container to workspace 3
+bindsym $mod+Shift+4      move container to workspace 4
+bindsym $mod+Shift+5      move container to workspace 5
+bindsym $mod+Shift+6      move container to workspace 6
+bindsym $mod+Shift+7      move container to workspace 7
+bindsym $mod+Shift+8      move container to workspace 8
+bindsym $mod+Shift+9      move container to workspace 9
+bindsym $mod+Shift+0      move container to workspace 10
 
-# start .desktop app launcher
-bindsym $mod+space exec --no-startup-id i3-dmenu-desktop
-
-# change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-# split in horizontal orientation
-bindsym $mod+m split h
-
-# split in vertical orientation
-bindsym $mod+n split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-bindsym $mod+o layout toggle all
-
-# change focus between tiling / floating windows
-bindsym $mod+u focus mode_toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-bindsym $mod+d focus child
-
-# Make the currently focused window a scratchpad
-bindsym $mod+Shift+y move scratchpad
-
-# Show the first scratchpad window
-bindsym $mod+y scratchpad show
-
-# switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
-
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
-
-# move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-# toggle tiling / floating
-bindsym $mod+Shift+u floating toggle
-
-# kill focused window
-bindsym $mod+Shift+q kill
-
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
-# lock screen
-
-# resize window (you can also use the mouse for that)
 mode "resize" {
     # These bindings trigger as soon as you enter the resize mode
 
@@ -108,31 +86,3 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
-
-set_from_resource $font i3wm.font pango:DejaVu Sans Mono 10
-
-font $font
-
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
-bar {
-    status_command i3status
-    position top
-}
-
-exec --no-startup-id xsetroot -solid black
-exec --no-startup-id compton -b -i 0.9 -e 0.9
-exec --no-startup-id emacs --daemon
-exec --no-startup-id wicd-gtk -t &
-
-# mute/unmute
-bindsym XF86AudioMute exec --no-startup-id amixer -q sset Master toggle
-
-# increase by 3%
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 3%+
-
-# decrease by 3%
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 3%-
-
-bindsym XF86ScreenSaver exec "i3lock --color 1e0010 --show-failed-attempts --ignore-empty-password"
