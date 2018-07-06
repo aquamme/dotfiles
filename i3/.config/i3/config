@@ -87,7 +87,6 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
 # lock screen
-bindsym $mod+Shift+Delete exec "i3lock --color 1e0010 --show-failed-attempts --ignore-empty-password"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -120,3 +119,14 @@ exec --no-startup-id xsetroot -solid black
 exec --no-startup-id compton -b -i 0.9 -e 0.9
 exec --no-startup-id emacs --daemon
 exec --no-startup-id wicd-gtk -t &
+
+# mute/unmute
+bindsym XF86AudioMute exec --no-startup-id amixer -q sset Master toggle
+
+# increase by 3%
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 3%+
+
+# decrease by 3%
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 3%-
+
+bindsym XF86ScreenSaver exec "i3lock --color 1e0010 --show-failed-attempts --ignore-empty-password"
