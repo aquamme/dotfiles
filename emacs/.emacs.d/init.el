@@ -1,3 +1,7 @@
+;;; package --- summary
+;;; Commentary:
+;;; Code:
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
@@ -77,19 +81,35 @@
   (setq which-key-separator " ")
   (setq which-key-prefix-prefix "+")
   (setq which-key-max-display-columns nil)
+  (setq which-key-side-window-max-height 0.5)
   (setq which-key-side-window-max-width 0.5)
-  (setq which-key-side-window-location 'right)
+  (setq which-key-side-window-location 'bottom)
   :config
   (which-key-mode))
 
 (use-package rainbow-mode
   :ensure t)
 
+(use-package company
+  :ensure t
+  )
+
+(use-package flycheck
+  :ensure t
+  :init (global-flycheck-mode))
+
+(use-package tide
+  :ensure t
+  :after (typescript-mode company flycheck)
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save)))
+
 (use-package general
   :ensure t
   :config
 
-    ;; spacemacs-ish keybindings 
+    ;; spacemacs-ish keybindings
     (general-define-key
       :states '(normal visual insert emacs)
       :prefix "SPC"
@@ -109,6 +129,7 @@
     (general-define-key
      :states '(normal emacs)
      "-" 'dired-jump)
+
     (general-define-key
      :keymaps 'dired-mode-map
      "-" 'dired-jump
@@ -132,7 +153,7 @@
     ("c3c0a3702e1d6c0373a0f6a557788dfd49ec9e66e753fb24493579859c8e95ab" default)))
  '(package-selected-packages
    (quote
-    (helm-projectile evil-collection rainbow-mode projectile general which-key helm use-package evil-visual-mark-mode))))
+    (company tide flycheck helm-projectile evil-collection rainbow-mode projectile general which-key helm use-package evil-visual-mark-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
