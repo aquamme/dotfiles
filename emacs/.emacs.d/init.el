@@ -24,6 +24,10 @@
 
 (require 'package)
 
+;; Ensure dired-jump will be work even if dired-x.el hasn't been loaded yet. See https://www.gnu.org/software/emacs/manual/html_node/dired-x/Optional-Installation-Dired-Jump.html#Optional-Installation-Dired-Jump
+(autoload 'dired-jump "dired-x"
+  "Jump to Dired buffer corresponding to current buffer." t)
+
 (setq
   package-enable-at-startup nil
   package-archives '(("org" . "https://orgmode.org/elpa/")
