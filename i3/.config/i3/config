@@ -19,7 +19,8 @@ bar {
 }
 
 set $mod Mod4
-set $modmod Shift
+set $moda Mod1  
+set $modb ctrl  
 
 floating_modifier $mod
 
@@ -43,16 +44,16 @@ bindsym $mod+r            mode "resize"
 bindsym $mod+a            focus parent
 bindsym $mod+d            focus child
 bindsym $mod+y            scratchpad show
-bindsym $mod+$modmod+y    move scratchpad
-bindsym $mod+$modmod+h    move left
-bindsym $mod+$modmod+j    move down
-bindsym $mod+$modmod+k    move up
-bindsym $mod+$modmod+l    move right
-bindsym $mod+$modmod+u    floating toggle
-bindsym $mod+$modmod+q    kill
-bindsym $mod+$modmod+c    reload
-bindsym $mod+$modmod+r    restart
-bindsym $mod+$modmod+e    exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+$moda+y      move scratchpad
+bindsym $mod+$moda+h      move left
+bindsym $mod+$moda+j      move down
+bindsym $mod+$moda+k      move up
+bindsym $mod+$moda+l      move right
+bindsym $mod+$moda+u      floating toggle
+bindsym $mod+$moda+q      kill
+bindsym $mod+$moda+c      reload
+bindsym $mod+$moda+r      restart
+bindsym $mod+$moda+e      exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
 bindsym $mod+1            workspace 1
 bindsym $mod+2            workspace 2
 bindsym $mod+3            workspace 3
@@ -63,16 +64,20 @@ bindsym $mod+7            workspace 7
 bindsym $mod+8            workspace 8
 bindsym $mod+9            workspace 9
 bindsym $mod+0            workspace 10
-bindsym $mod+$modmod+1    move container to workspace 1
-bindsym $mod+$modmod+2    move container to workspace 2
-bindsym $mod+$modmod+3    move container to workspace 3
-bindsym $mod+$modmod+4    move container to workspace 4
-bindsym $mod+$modmod+5    move container to workspace 5
-bindsym $mod+$modmod+6    move container to workspace 6
-bindsym $mod+$modmod+7    move container to workspace 7
-bindsym $mod+$modmod+8    move container to workspace 8
-bindsym $mod+$modmod+9    move container to workspace 9
-bindsym $mod+$modmod+0    move container to workspace 10
+bindsym $mod+$moda+1      move container to workspace 1
+bindsym $mod+$moda+2      move container to workspace 2
+bindsym $mod+$moda+3      move container to workspace 3
+bindsym $mod+$moda+4      move container to workspace 4
+bindsym $mod+$moda+5      move container to workspace 5
+bindsym $mod+$moda+6      move container to workspace 6
+bindsym $mod+$moda+7      move container to workspace 7
+bindsym $mod+$moda+8      move container to workspace 8
+bindsym $mod+$moda+9      move container to workspace 9
+bindsym $mod+$moda+0      move container to workspace 10
+bindsym $mod+$modb+h      move workspace to output left
+bindsym $mod+$modb+j      move workspace to output down
+bindsym $mod+$modb+k      move workspace to output up
+bindsym $mod+$modb+l      move workspace to output right
 
 mode "resize" {
     # These bindings trigger as soon as you enter the resize mode
