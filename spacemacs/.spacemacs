@@ -320,14 +320,15 @@ you should place your code here."
     "wF"  'follow-mode)
 
   ;; vim-ish searching in dired buffers
+  (require 'dired-x)
   (define-key dired-mode-map (kbd "n") 'evil-search-next)
   (define-key dired-mode-map (kbd "N") 'evil-search-previous)
 
   ;; use emacs-ish quit keybind to exit insert mode
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
 
-  ;; Ensure that make-frame will open the buffer of the currently focused frameK
-  (setq persp-init-new-frame-behaviour-override (lambda () ()))
+  ;; Ensure that make-frame will open the buffer of the currently focused frame
+  (setq persp-init-new-frame-behaviour-override (lambda (frame b) nil))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
