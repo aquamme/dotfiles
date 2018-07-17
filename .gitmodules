@@ -7,3 +7,6 @@
 [submodule "vim/.vim/bundle/vim-vinegar"]
 	path = vim/.vim/bundle/vim-vinegar
 	url = https://github.com/tpope/vim-vinegar.git
+[submodule "spacemacs/.emacs.d"]
+	path = spacemacs/.emacs.d
+	url = git@github.com:syl20bnr/spacemacs.git
