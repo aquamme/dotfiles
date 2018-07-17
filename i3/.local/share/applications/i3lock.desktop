@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Lock System (i3lock)
+GenericName=Lock System
+Comment=Edit text
+Exec=i3lock --color 1e0010 --show-failed-attempts --ignore-empty-password
+Type=Application
+Terminal=false
