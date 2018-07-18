@@ -1,0 +1,10 @@
+#! /bin/sh
+
+# Change the cwd to the directory where this script is
+cd $(dirname $0)
+
+# Use fcwd to change cwd to the cwd of the focused xwindow's child process
+cd $(./fcwd)
+
+# Start a terminal!
+i3-sensible-terminal

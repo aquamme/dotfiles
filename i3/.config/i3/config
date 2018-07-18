@@ -17,11 +17,16 @@ set $mod Mod4
 set $moda Mod1  
 set $modb ctrl  
 
+set $terminal ~/.config/i3/scripts/launch-terminal
+set $filemanager ~/.config/i3/scripts/launch-fm
+
 floating_modifier $mod
 
-bindsym $mod+Return       exec i3-sensible-terminal
+bindsym $mod+Return       exec $terminal
 bindsym $mod+backslash    exec emacsclient -c
 bindsym $mod+space        exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -nf '#BBBBBB' -nb '#222222' -sb '#A45BAD' -sf '#EEEEEE'"
+
+set $mode_launcher In fCWD, launch: [f]ile manager [t]erminal 
 
 bindsym $mod+h            focus left
 bindsym $mod+j            focus down
@@ -29,6 +34,7 @@ bindsym $mod+k            focus up
 bindsym $mod+l            focus right
 bindsym $mod+m            split h
 bindsym $mod+n            split v
+bindsym $mod+i            split toggle
 bindsym $mod+f            fullscreen toggle
 bindsym $mod+s            layout stacking
 bindsym $mod+w            layout tabbed
@@ -36,6 +42,7 @@ bindsym $mod+e            layout toggle split
 bindsym $mod+o            layout toggle all
 bindsym $mod+u            focus mode_toggle
 bindsym $mod+r            mode "resize"
+bindsym $mod+p            mode "$mode_launcher"
 bindsym $mod+a            focus parent
 bindsym $mod+d            focus child
 bindsym $mod+y            scratchpad show
@@ -83,6 +90,16 @@ mode "resize" {
     bindsym l resize grow width 10 px or 10 ppt
 
     # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "$mode_launcher" {
+
+    bindsym t exec $terminal; mode "default"
+    bindsym f exec $filemanager; mode "default"
+
+    # abort
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
