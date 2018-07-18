@@ -37,3 +37,7 @@ function fish_prompt
 
   set_color normal
 end
+
+set fish_greeting
+
+set -x PATH $PATH $HOME/.config/composer/vendor/bin/
