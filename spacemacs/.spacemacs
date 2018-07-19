@@ -333,6 +333,7 @@ you should place your code here."
   ;; Ensure that make-frame will open the buffer of the currently focused frame
   (setq persp-init-new-frame-behaviour-override (lambda (frame b) nil))
 
+  (setq-default indent-tabs-mode nil)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
