@@ -1,5 +1,6 @@
 # i3 config file (v4)
 
+exec --no-startup-id unclutter &
 exec --no-startup-id xsetroot -solid black
 #exec --no-startup-id compton -b -i 0.9 -e 0.9 --backend=xr_glx_hybrid
 exec --no-startup-id emacs --daemon
@@ -26,7 +27,8 @@ bindsym $mod+Return       exec $terminal
 bindsym $mod+backslash    exec emacsclient -c
 bindsym $mod+space        exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -nf '#BBBBBB' -nb '#222222' -sb '#A45BAD' -sf '#EEEEEE'"
 
-set $mode_launcher In fCWD, launch: [f]ile manager [t]erminal 
+set $mode_launcher In fCWD launch: [f]ile manager | [t]erminal 
+set $mode_screenshot Screenshot: [a]ll screens | foc[u]sed window | [s]elect area 
 
 bindsym $mod+h            focus left
 bindsym $mod+j            focus down
@@ -42,7 +44,8 @@ bindsym $mod+e            layout toggle split
 bindsym $mod+o            layout toggle all
 bindsym $mod+u            focus mode_toggle
 bindsym $mod+r            mode "resize"
-bindsym $mod+p            mode "$mode_launcher"
+bindsym $mod+$moda+p      mode "$mode_launcher"
+bindsym $mod+$moda+s      mode "$mode_screenshot"
 bindsym $mod+a            focus parent
 bindsym $mod+d            focus child
 bindsym $mod+y            scratchpad show
@@ -89,7 +92,6 @@ mode "resize" {
     bindsym k resize shrink height 10 px or 10 ppt
     bindsym l resize grow width 10 px or 10 ppt
 
-    # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -99,7 +101,15 @@ mode "$mode_launcher" {
     bindsym t exec $terminal; mode "default"
     bindsym f exec $filemanager; mode "default"
 
-    # abort
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "$mode_screenshot" {
+    bindsym           a exec scrot -e    'mkdir -p ~/screenshots && mv $f ~/screenshots/'; mode "default"
+    bindsym           u exec scrot -u -e 'mkdir -p ~/screenshots && mv $f ~/screenshots/'; mode "default"
+    bindsym --release s exec scrot -s -e 'mkdir -p ~/screenshots && mv $f ~/screenshots/'; mode "default"
+    
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }

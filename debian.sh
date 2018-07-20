@@ -9,7 +9,9 @@ apt install \
     pcmanfm \
     rxvt-unicode \
     silversearcher-ag \
+    scrot \
     stow \
     tig \
+    unclutter \
     wicd \
     wmctrl
