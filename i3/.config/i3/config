@@ -1,22 +1,35 @@
 # i3 config file (v4)
 
+mouse_warping none
+workspace_auto_back_and_forth yes
+
+set $locker i3lock --color 1e0010 --show-failed-attempts --ignore-empty-password
+
 exec --no-startup-id unclutter &
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 exec --no-startup-id xsetroot -solid black
 #exec --no-startup-id compton -b -i 0.9 -e 0.9 --backend=xr_glx_hybrid
 exec --no-startup-id emacs --daemon
 exec --no-startup-id wicd-gtk -t &
 
+# lock screen after 15 mins of inactivity -- put cursor in bottom right corner to disable
+exec --no-startup-id xautolock -detectsleep \
+  -time 10 -locker $locker \
+  -notify 30 \
+  -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" \
+  -corners 000- -cornersize 30
+
 bindsym XF86AudioMute exec --no-startup-id amixer -q sset Master toggle
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 3%+
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 3%-
-bindsym XF86ScreenSaver exec "i3lock --color 1e0010 --show-failed-attempts --ignore-empty-password"
+bindsym XF86ScreenSaver exec "$locker"
 
 set_from_resource $font i3wm.font pango:DejaVu Sans Mono 10
 font $font
 
 set $mod Mod4
-set $moda Mod1  
-set $modb ctrl  
+set $moda Mod1
+set $modb ctrl
 
 set $terminal ~/.config/i3/scripts/launch-terminal
 set $filemanager ~/.config/i3/scripts/launch-fm

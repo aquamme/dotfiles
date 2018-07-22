@@ -6,6 +6,7 @@ apt install \
     fish \
     htop \
     i3 \
+    libnotify-bin \
     pcmanfm \
     rxvt-unicode \
     silversearcher-ag \
@@ -13,5 +14,6 @@ apt install \
     stow \
     tig \
     unclutter \
+    xautolock \
     wicd \
     wmctrl
