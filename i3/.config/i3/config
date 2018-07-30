@@ -12,7 +12,7 @@ exec --no-startup-id xsetroot -solid black
 exec --no-startup-id emacs --daemon
 exec --no-startup-id wicd-gtk -t &
 
-# lock screen after 15 mins of inactivity -- put cursor in bottom right corner to disable
+# lock screen after 10 mins of inactivity -- put cursor in bottom right corner to disable
 exec --no-startup-id xautolock -detectsleep \
   -time 10 -locker $locker \
   -notify 30 \
@@ -40,7 +40,7 @@ bindsym $mod+Return       exec $terminal
 bindsym $mod+backslash    exec emacsclient -c
 bindsym $mod+space        exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -nf '#BBBBBB' -nb '#222222' -sb '#A45BAD' -sf '#EEEEEE'"
 
-set $mode_launcher In fCWD launch: [f]ile manager | [t]erminal 
+set $mode_launcher [f]ile manager | [l]ock | [t]erminal 
 set $mode_screenshot Screenshot: [a]ll screens | foc[u]sed window | [s]elect area 
 
 bindsym $mod+h            focus left
@@ -111,8 +111,9 @@ mode "resize" {
 
 mode "$mode_launcher" {
 
-    bindsym t exec $terminal; mode "default"
     bindsym f exec $filemanager; mode "default"
+    bindsym l exec $locker; mode "default"
+    bindsym t exec $terminal; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -129,7 +130,7 @@ mode "$mode_screenshot" {
 
 # class                 border  bground text    indicator child_border
 client.focused          #A45BAD #5D4D7A #FFFFFF #A45BAD   #5D4D7A
-client.focused_inactive #292B2E #292B2E #FFFFFF #292B2E   #292B2E
+client.focused_inactive #292B2E #827591 #FFFFFF #292B2E   #292B2E
 client.unfocused        #333333 #222222 #888888 #292D2E   #222222
 client.urgent           #2F343A #E0211D #FFFFFF #E0211D   #E0211D
 client.placeholder      #000000 #0C0C0C #FFFFFF #000000   #0C0C0C
@@ -145,8 +146,9 @@ bar {
         statusline #FFFFFF
         separator  #666666
   
+        # class            border  bgroung text
         focused_workspace  #A45BAD #5D4D7A #FFFFFF
-        active_workspace   #333333 #222222 #FFFFFF
+        active_workspace   #333333 #827591 #FFFFFF
         inactive_workspace #333333 #222222 #888888
         urgent_workspace   #2F343A #E0211D #FFFFFF
         binding_mode       #2F343A #E0211D #FFFFFF
