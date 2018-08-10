@@ -6,6 +6,7 @@ apt install \
     fish \
     htop \
     i3 \
+    j4-dmenu-desktop \
     libnotify-bin \
     nm-applet \
     pcmanfm \

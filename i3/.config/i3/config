@@ -38,7 +38,7 @@ floating_modifier $mod
 
 bindsym $mod+Return       exec $terminal
 bindsym $mod+backslash    exec emacsclient -c
-bindsym $mod+space        exec --no-startup-id i3-dmenu-desktop --dmenu="dmenu -i -nf '#BBBBBB' -nb '#222222' -sb '#A45BAD' -sf '#EEEEEE'"
+bindsym $mod+space        exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -nf '#BBBBBB' -nb '#222222' -sb '#A45BAD' -sf '#EEEEEE'"
 
 set $mode_launcher [f]ile manager | [l]ock | [t]erminal 
 set $mode_screenshot Screenshot: [a]ll screens | foc[u]sed window | [s]elect area 
