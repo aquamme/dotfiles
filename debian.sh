@@ -7,6 +7,7 @@ apt install \
     htop \
     i3 \
     libnotify-bin \
+    nm-applet \
     pcmanfm \
     rxvt-unicode \
     silversearcher-ag \
@@ -15,5 +16,4 @@ apt install \
     tig \
     unclutter \
     xautolock \
-    wicd \
     wmctrl
