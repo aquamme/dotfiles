@@ -14,3 +14,29 @@ URxvt.background: #000000
 URxvt.borderColor: #000000
 URxvt.foreground: #EFEFEF
 URxvt.scrollBar: false
+
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+URxvt.perl-ext-common:  eval,resize-font
+
+URxvt.keysym.Control-minus:     resize-font:smaller
+URxvt.keysym.Control-equal:     resize-font:bigger
+URxvt.keysym.Control-0:         resize-font:reset
+URxvt.keysym.Control-question:  resize-font:show
+
+! By default, urxvt binds ctrl-shift to its weird
+! "Keycap Picture Insert" and "ISO 14755" modes
+! This disables that
+URxvt.iso14755: false
+URxvt.iso14755_52: false
+
+! More conventional keybinds for copy/paste
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
