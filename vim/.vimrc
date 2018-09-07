@@ -1,32 +1,63 @@
+" disable vi backwards compat
 set nocompatible
+
+" tell vim to assume 256 color support
 set t_Co=256
+
+" highlight the current column
 set cursorcolumn
+
+" highlight the current line
 set cursorline
+
+" highlight search matches
 set hlsearch
+
 set wildmenu
-set wildmode=list:longest,full
+set wildmode=list:full,full
+
+" enables faster redrawing
 set ttyfast
+
+" ensure the ruler is on
 set ruler
 set laststatus=2
+
+" show line numbers
 set nu
+
+" store all swapfiles in a single directory
 set directory=$HOME/.vim/swapfiles//
 
-
+" indent to match previous line
 set autoindent
+
+" more intuitive backspace behavior
 set backspace=indent,eol,start
 
+" autoindent with spaces
 set expandtab
 
+" highlight search matches as you type the search term
 set incsearch
+
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
+" synchronize the default register with the system clipboard
 set clipboard=unnamedplus
 
+" move by visual lines with j/k
 nnoremap j gj
 nnoremap k gk
+
+" some spacemacs inspired keybinds
+let mapleader = " "
+nnoremap <leader>fs :w<CR>
+" todo: figure out how to make this binding work:
+" nnoremap <leader>d  :CtrlP<CR>
 
 colorscheme molokai
 syntax on
