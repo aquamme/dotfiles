@@ -41,9 +41,8 @@ set wildignore+=*/tmp/*,*.swp,*/vendor/*,*/bower_components/*,*/node_modules/*,*
 let g:neomake_javascript_enabled_makers = ['eslint']
 autocmd! BufWritePost * Neomake
 
-let g:ctrlp_user_command = {
-	\ 'types': {
-		\ 1: ['.git', 'cd %s && git ls-files -co --exclude-standard']
-		\ },
-	\ 'fallback': 'find %s -type f'
-	\ }
+if executable('rg')
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg -uu %s --files --color=never --glob ""'
+  let g:ctrlp_use_caching = 0
+endif
