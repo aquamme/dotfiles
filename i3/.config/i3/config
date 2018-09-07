@@ -5,27 +5,27 @@ workspace_auto_back_and_forth yes
 
 set $locker i3lock --color 1e0010 --show-failed-attempts --ignore-empty-password
 
+exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 exec --no-startup-id unclutter &
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 exec --no-startup-id xsetroot -solid black
-#exec --no-startup-id compton -b -i 0.9 -e 0.9 --backend=xr_glx_hybrid
 exec --no-startup-id emacs --daemon
 exec --no-startup-id nm-applet &
-
-# lock screen after 10 mins of inactivity -- put cursor in bottom right corner to disable
-exec --no-startup-id xautolock -detectsleep \
-  -time 10 -locker $locker \
-  -notify 30 \
-  -notifier "notify-send -u critical -t 10000 -- 'LOCKING screen in 30 seconds'" \
-  -corners 000- -cornersize 30
+exec --no-startup-id xss-lock -- $locker
+exec --no-startup-id redshift-qt
 
 bindsym XF86AudioMute exec --no-startup-id amixer -q sset Master toggle
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q sset Master 3%+
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q sset Master 3%-
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
 bindsym XF86ScreenSaver exec "$locker"
+bindsym XF86Display exec "xrandr --auto"
 
 set_from_resource $font i3wm.font pango:DejaVu Sans Mono 10
 font $font
+
+set $dmenu_args -i -nf '#BBBBBB' -nb '#222222' -sb '#A45BAD' -sf '#EEEEEE' -fn 'xft:Source Code Pro:size=12:antialias=true:hinting=true'
 
 set $mod Mod4
 set $moda Mod1
@@ -38,10 +38,11 @@ floating_modifier $mod
 
 bindsym $mod+Return       exec $terminal
 bindsym $mod+backslash    exec emacsclient -c
-bindsym $mod+space        exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu -i -nf '#BBBBBB' -nb '#222222' -sb '#A45BAD' -sf '#EEEEEE'"
+bindsym $mod+space        exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu $dmenu_args"
 
 set $mode_launcher [f]ile manager | [l]ock | [t]erminal 
 set $mode_screenshot Screenshot: [a]ll screens | foc[u]sed window | [s]elect area 
+set $mode_displays [a]uto | [d]esk
 
 bindsym $mod+h            focus left
 bindsym $mod+j            focus down
@@ -52,8 +53,10 @@ bindsym $mod+f            fullscreen toggle
 bindsym $mod+o            layout toggle all
 bindsym $mod+u            focus mode_toggle
 bindsym $mod+r            mode "resize"
+bindsym $mod+v            exec --no-startup-id "clipmenu $dmenu_args"
 bindsym $mod+$moda+p      mode "$mode_launcher"
 bindsym $mod+$moda+s      mode "$mode_screenshot"
+bindsym $mod+$moda+d      mode "$mode_displays"
 bindsym $mod+a            focus parent
 bindsym $mod+d            focus child
 bindsym $mod+y            scratchpad show
@@ -118,6 +121,14 @@ mode "$mode_screenshot" {
     bindsym           a exec scrot -e    'mkdir -p ~/screenshots && mv $f ~/screenshots/'; mode "default"
     bindsym           u exec scrot -u -e 'mkdir -p ~/screenshots && mv $f ~/screenshots/'; mode "default"
     bindsym --release s exec scrot -s -e 'mkdir -p ~/screenshots && mv $f ~/screenshots/'; mode "default"
+    
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+mode "$mode_displays" {
+    bindsym a exec "xrandr --auto"; mode "default"
+    bindsym d exec ".screenlayout/desk.sh"; mode "default"
     
     bindsym Return mode "default"
     bindsym Escape mode "default"
