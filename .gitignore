@@ -3,4 +3,5 @@ emacs/.emacs.d/backups
 emacs/.emacs.d/elpa
 emacs/.emacs.d/projectile-bookmarks.eld
 vim/.vim/.netrwhist
+vim/.vim/plugs/*
 vim/.vim/swapfiles/*

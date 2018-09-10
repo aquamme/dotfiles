@@ -1,3 +1,14 @@
+call plug#begin('~/.vim/plugs')
+
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'neomake/neomake'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-vinegar'
+
+call plug#end()
+
+
+
 " disable vi backwards compat
 set nocompatible
 
@@ -66,7 +77,6 @@ syntax on
 hi StatusLine term=bold,reverse cterm=bold ctermbg=101 ctermfg=16 gui=bold guibg=#808070 guifg=#000000
 hi StatusLineNC term=reverse cterm=NONE ctermbg=59 ctermfg=16 gui=italic guibg=#404c4c guifg=#000000
 
-execute pathogen#infect()
 set wildignore+=*/tmp/*,*.swp,*/vendor/*,*/bower_components/*,*/node_modules/*,*/dist/*
 
 let g:neomake_javascript_enabled_makers = ['eslint']
