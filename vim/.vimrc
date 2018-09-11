@@ -4,6 +4,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'neomake/neomake'
 Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-vinegar'
+Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 
 call plug#end()
 
@@ -26,6 +27,7 @@ set hlsearch
 
 set wildmenu
 set wildmode=list:full,full
+set wildignore+=*/tmp/*,*.swp,*/vendor/*,*/bower_components/*,*/node_modules/*,*/dist/*
 
 " enables faster redrawing
 set ttyfast
@@ -43,11 +45,17 @@ set directory=$HOME/.vim/swapfiles//
 " indent to match previous line
 set autoindent
 
+" 2 xpace indentation
+set shiftwidth=2
+
 " more intuitive backspace behavior
 set backspace=indent,eol,start
 
 " autoindent with spaces
 set expandtab
+
+" synchronize the default register with the system clipboard
+set clipboard=unnamedplus
 
 " highlight search matches as you type the search term
 set incsearch
@@ -57,8 +65,6 @@ if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 endif
 
-" synchronize the default register with the system clipboard
-set clipboard=unnamedplus
 
 " move by visual lines with j/k
 nnoremap j gj
@@ -66,9 +72,11 @@ nnoremap k gk
 
 " some spacemacs inspired keybinds
 let mapleader = " "
-nnoremap <leader>fs :w<CR>
-" todo: figure out how to make this binding work:
-" nnoremap <leader>d  :CtrlP<CR>
+nnoremap <Leader>fs :w<CR>
+nnoremap <Leader>fed :edit $MYVIMRC<CR>
+nnoremap <Leader>feR :source $MYVIMRC<CR>
+
+let maplocalleader = ","
 
 colorscheme molokai
 syntax on
@@ -76,8 +84,6 @@ syntax on
 " Highlight status line for currently active view
 hi StatusLine term=bold,reverse cterm=bold ctermbg=101 ctermfg=16 gui=bold guibg=#808070 guifg=#000000
 hi StatusLineNC term=reverse cterm=NONE ctermbg=59 ctermfg=16 gui=italic guibg=#404c4c guifg=#000000
-
-set wildignore+=*/tmp/*,*.swp,*/vendor/*,*/bower_components/*,*/node_modules/*,*/dist/*
 
 let g:neomake_javascript_enabled_makers = ['eslint']
 autocmd! BufWritePost * Neomake
@@ -87,3 +93,11 @@ if executable('rg')
   let g:ctrlp_user_command = 'rg -uu %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
 endif
+
+
+let g:EasyMotion_do_mapping = 0 " Disable default mappings
+let g:EasyMotion_smartcase = 1 " Case insensitive search, unless a capital letter is used
+map <Leader>s <Plug>(easymotion-s)
+
+autocmd Filetype php nnoremap <LocalLeader>m :call phpactor#ContextMenu()<CR>
+
