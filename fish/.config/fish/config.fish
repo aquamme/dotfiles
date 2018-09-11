@@ -40,9 +40,7 @@ end
 
 set fish_greeting
 
-set -x PATH $PATH $HOME/.config/composer/vendor/bin/
 set -x PATH $PATH $HOME/.npm-global/bin
-set -x PATH $PATH $HOME/bin/
 
 function dprod
     env DEIS_PROFILE=$HOME/.deis/myriad-client.json deis $argv
