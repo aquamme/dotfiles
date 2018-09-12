@@ -60,6 +60,10 @@ set clipboard=unnamedplus
 " highlight search matches as you type the search term
 set incsearch
 
+" case insensitive search...
+set ignorecase
+" ...unless the search contains capital letters
+set smartcase
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
