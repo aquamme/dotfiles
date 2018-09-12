@@ -2,7 +2,6 @@ call plug#begin('~/.vim/plugs')
 
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'neomake/neomake'
-Plug 'easymotion/vim-easymotion'
 Plug 'tpope/vim-vinegar'
 Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 
@@ -97,11 +96,6 @@ if executable('rg')
   let g:ctrlp_user_command = 'rg -uu %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
 endif
-
-
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-let g:EasyMotion_smartcase = 1 " Case insensitive search, unless a capital letter is used
-map <Leader>s <Plug>(easymotion-s)
 
 autocmd Filetype php nnoremap <LocalLeader>m :call phpactor#ContextMenu()<CR>
 
