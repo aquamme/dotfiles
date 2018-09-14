@@ -4,6 +4,8 @@ Plug 'neomake/neomake'
 Plug 'junegunn/fzf.vim'
 Plug 'justinmk/vim-dirvish'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 
 call plug#end()
@@ -35,9 +37,7 @@ set smartcase " ...unless the search contains capital letters
 """""""" Keybinds """"""""
 
 " Use <C-L> to clear the highlighting of :set hlsearch.
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
-endif
+nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
 
 " move by visual lines with j/k
@@ -63,7 +63,7 @@ autocmd Filetype php nnoremap <LocalLeader>m :call phpactor#ContextMenu()<CR>
 "" Unused/duplicated keys """
 """""""""""""""""""""""""""""
 
-function IFRE ()
+function! IFRE ()
   echom "It's free real estate"
 endfunction
 
