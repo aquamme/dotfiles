@@ -42,6 +42,13 @@ set fish_greeting
 
 set -x PATH $PATH $HOME/.npm-global/bin
 
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc...
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
 function dprod
     env DEIS_PROFILE=$HOME/.deis/myriad-client.json deis $argv
 end

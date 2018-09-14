@@ -1,68 +1,39 @@
 call plug#begin('~/.vim/plugs')
 
-Plug 'ctrlpvim/ctrlp.vim'
 Plug 'neomake/neomake'
-Plug 'tpope/vim-vinegar'
+Plug 'junegunn/fzf.vim'
+Plug 'justinmk/vim-dirvish'
+Plug 'tpope/vim-eunuch'
 Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 
 call plug#end()
 
 
-
-" disable vi backwards compat
-set nocompatible
-
-" tell vim to assume 256 color support
-set t_Co=256
-
-" highlight the current column
-set cursorcolumn
-
-" highlight the current line
-set cursorline
-
-" highlight search matches
-set hlsearch
-
-set wildmenu
+set nocompatible " disable vi backwards compat
+set t_Co=256 " tell vim to assume 256 color support
+set cursorcolumn " highlight the current column
+set cursorline " highlight the current line
+set hlsearch " highlight search matches
+set wildmenu " highlight search matches
 set wildmode=list:full,full
 set wildignore+=*/tmp/*,*.swp,*/vendor/*,*/bower_components/*,*/node_modules/*,*/dist/*
-
-" enables faster redrawing
-set ttyfast
-
-" ensure the ruler is on
-set ruler
+set ttyfast " enables faster redrawing
+set ruler " ensure the ruler is on
 set laststatus=2
+set number " show line numbers
+set directory=$HOME/.vim/swapfiles// " store all swapfiles in a single directory
+set autoindent " indent to match previous line
+set shiftwidth=2 " 2 xpace indentation
+set backspace=indent,eol,start " more intuitive backspace behavior
+set expandtab " autoindent with spaces
+set clipboard=unnamedplus " synchronize the default register with the system clipboard
+set incsearch " highlight search matches as you type the search term
+set ignorecase " case insensitive search...
+set smartcase " ...unless the search contains capital letters
 
-" show line numbers
-set nu
 
-" store all swapfiles in a single directory
-set directory=$HOME/.vim/swapfiles//
+"""""""" Keybinds """"""""
 
-" indent to match previous line
-set autoindent
-
-" 2 xpace indentation
-set shiftwidth=2
-
-" more intuitive backspace behavior
-set backspace=indent,eol,start
-
-" autoindent with spaces
-set expandtab
-
-" synchronize the default register with the system clipboard
-set clipboard=unnamedplus
-
-" highlight search matches as you type the search term
-set incsearch
-
-" case insensitive search...
-set ignorecase
-" ...unless the search contains capital letters
-set smartcase
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
@@ -73,13 +44,44 @@ endif
 nnoremap j gj
 nnoremap k gk
 
-" some spacemacs inspired keybinds
+nmap <C-j> <Plug>(dirvish_up)
+nmap <C-p> :FZF<CR>
+
+""" Leader """"
 let mapleader = " "
+nnoremap <Leader><Leader> :Commands<CR>
 nnoremap <Leader>fs :w<CR>
 nnoremap <Leader>fed :edit $MYVIMRC<CR>
 nnoremap <Leader>feR :source $MYVIMRC<CR>
 
+""" Local leader """"
+
 let maplocalleader = ","
+autocmd Filetype php nnoremap <LocalLeader>m :call phpactor#ContextMenu()<CR>
+
+"""""""""""""""""""""""""""""
+"" Unused/duplicated keys """
+"""""""""""""""""""""""""""""
+
+function IFRE ()
+  echom "It's free real estate"
+endfunction
+
+nnoremap - :call IFRE()<CR>
+nnoremap <C-@> :call IFRE()<CR>
+nnoremap <C-g> :call IFRE()<CR>
+nnoremap <C-h> :call IFRE()<CR>
+nnoremap <C-k> :call IFRE()<CR>
+nnoremap <C-m> :call IFRE()<CR>
+nnoremap <C-n> :call IFRE()<CR>
+nnoremap <C-q> :call IFRE()<CR>
+nnoremap <C-s> :call IFRE()<CR>
+nnoremap K :call IFRE()<CR>
+nnoremap s :call IFRE()<CR>
+nnoremap S :call IFRE()<CR>
+nnoremap x :call IFRE()<CR>
+
+"""""""""""""""""""""""""""""""
 
 colorscheme molokai
 syntax on
@@ -91,11 +93,36 @@ hi StatusLineNC term=reverse cterm=NONE ctermbg=59 ctermfg=16 gui=italic guibg=#
 let g:neomake_javascript_enabled_makers = ['eslint']
 autocmd! BufWritePost * Neomake
 
-if executable('rg')
-  set grepprg=rg\ --color=never
-  let g:ctrlp_user_command = 'rg -uu %s --files --color=never --glob ""'
-  let g:ctrlp_use_caching = 0
-endif
+" Disable netrw and map its commands to Dirvish commands
+let g:loaded_netrwPlugin = 1
+command! -nargs=? -complete=dir Explore Dirvish <args>
+command! -nargs=? -complete=dir Sexplore belowright split | silent Dirvish <args>
+command! -nargs=? -complete=dir Vexplore leftabove vsplit | silent Dirvish <args>
 
-autocmd Filetype php nnoremap <LocalLeader>m :call phpactor#ContextMenu()<CR>
 
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview('up:60%')
+  \           : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \   <bang>0)
+" Enable per-command history.
+" CTRL-N and CTRL-P will be automatically bound to next-history and
+" previous-history instead of down and up. If you don't like the change,
+" explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
+let g:fzf_history_dir = '~/.local/share/fzf-history'
