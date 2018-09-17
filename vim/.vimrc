@@ -93,6 +93,11 @@ hi StatusLineNC term=reverse cterm=NONE ctermbg=59 ctermfg=16 gui=italic guibg=#
 let g:neomake_javascript_enabled_makers = ['eslint']
 autocmd! BufWritePost * Neomake
 
+augroup dirvish_config
+    autocmd!
+    autocmd FileType dirvish silent! unmap <buffer> <C-p>
+augroup end
+
 " Disable netrw and map its commands to Dirvish commands
 let g:loaded_netrwPlugin = 1
 command! -nargs=? -complete=dir Explore Dirvish <args>
