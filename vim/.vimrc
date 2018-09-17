@@ -6,6 +6,8 @@ Plug 'justinmk/vim-dirvish'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'w0rp/ale'
 Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
 
 call plug#end()
@@ -63,23 +65,18 @@ autocmd Filetype php nnoremap <LocalLeader>m :call phpactor#ContextMenu()<CR>
 "" Unused/duplicated keys """
 """""""""""""""""""""""""""""
 
-function! IFRE ()
-  echom "It's free real estate"
-endfunction
-
-nnoremap - :call IFRE()<CR>
-nnoremap <C-@> :call IFRE()<CR>
-nnoremap <C-g> :call IFRE()<CR>
-nnoremap <C-h> :call IFRE()<CR>
-nnoremap <C-k> :call IFRE()<CR>
-nnoremap <C-m> :call IFRE()<CR>
-nnoremap <C-n> :call IFRE()<CR>
-nnoremap <C-q> :call IFRE()<CR>
-nnoremap <C-s> :call IFRE()<CR>
-nnoremap K :call IFRE()<CR>
-nnoremap s :call IFRE()<CR>
-nnoremap S :call IFRE()<CR>
-nnoremap x :call IFRE()<CR>
+nnoremap - :echom "- is unbound "<CR>
+nnoremap <C-@> :echom "C-@ is unbound"<CR>
+nnoremap <C-g> :echom "C-g is unbound"<CR>
+nnoremap <C-h> :echom "C-h is unbound"<CR>
+nnoremap <C-k> :echom "C-k is unbound"<CR>
+nnoremap <C-m> :echom "C-m is unbound"<CR>
+nnoremap <C-n> :echom "C-n is unbound"<CR>
+nnoremap <C-q> :echom "C-q is unbound"<CR>
+nnoremap <C-s> :echom "C-s is unbound"<CR>
+nnoremap s :echom "s is unbound"<CR>
+nnoremap S :echom "S is unbound"<CR>
+nnoremap K :echom "K is unbound"<CR>
 
 """""""""""""""""""""""""""""""
 
@@ -120,6 +117,7 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
@@ -132,3 +130,21 @@ command! -bang -nargs=* Rg
 " previous-history instead of down and up. If you don't like the change,
 " explicitly bind the keys to down and up in your $FZF_DEFAULT_OPTS.
 let g:fzf_history_dir = '~/.local/share/fzf-history'
+
+let g:ale_sign_column_always = 1
+
+" CTRL-A CTRL-Q to select all and build quickfix list
+
+function! s:build_quickfix_list(lines)
+  call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+  copen
+  cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
