@@ -40,7 +40,13 @@ end
 
 set fish_greeting
 
-set -x PATH $PATH $HOME/.npm-global/bin
+if test -d $HOME/.npm/global/bin
+  set -x PATH $PATH $HOME/.npm-global/bin
+end
+
+if test -d $HOME/.config/composer/vendor/bin
+  set -x PATH $PATH $HOME/.config/composer/vendor/bin
+end
 
 # --files: List files that would be searched but do not search
 # --no-ignore: Do not respect .gitignore, etc...
@@ -51,4 +57,8 @@ set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.g
 
 function dprod
     env DEIS_PROFILE=$HOME/.deis/myriad-client.json deis $argv
+end
+
+function dbush
+    env DEIS_PROFILE=$HOME/.deis/bushel-client.json deis $argv
 end
