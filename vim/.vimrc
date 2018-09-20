@@ -27,6 +27,9 @@ set laststatus=2
 set number " show line numbers
 set directory=$HOME/.vim/swapfiles// " store all swapfiles in a single directory
 set autoindent " indent to match previous line
+set autowrite       " Automatically save before commands like :next and :make
+set lazyredraw
+set showmatch
 set shiftwidth=2 " 2 xpace indentation
 set backspace=indent,eol,start " more intuitive backspace behavior
 set expandtab " autoindent with spaces
@@ -41,10 +44,16 @@ set smartcase " ...unless the search contains capital letters
 " Use <C-L> to clear the highlighting of :set hlsearch.
 nnoremap <silent> <C-L> :nohlsearch<C-R>=has('diff')?'<Bar>diffupdate':''<CR><CR><C-L>
 
-
 " move by visual lines with j/k
 nnoremap j gj
 nnoremap k gk
+nnoremap Y y$
+
+cnoremap <C-a> <Home>
+cnoremap <C-x><C-a> <C-A>
+cnoremap <C-k> <C-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<CR>
+cnoremap <A-Left> <S-Left>
+cnoremap <A-Right> <S-Right>
 
 nmap <C-j> <Plug>(dirvish_up)
 nmap <C-p> :FZF<CR>
