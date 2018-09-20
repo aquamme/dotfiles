@@ -6,6 +6,8 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
+Plug 'markonm/traces.vim'
+Plug 'machakann/vim-highlightedyank'
 Plug 'w0rp/ale'
 Plug 'mbbill/undotree'
 Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
@@ -57,6 +59,8 @@ cnoremap <A-Right> <S-Right>
 
 nmap <C-j> <Plug>(dirvish_up)
 nmap <C-p> :FZF<CR>
+" this works in neovim
+nmap <M-Enter> <Plug>(dirvish_up)
 
 """ Leader """"
 let mapleader = " "
