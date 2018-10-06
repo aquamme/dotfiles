@@ -11,6 +11,7 @@ Plug 'machakann/vim-highlightedyank'
 Plug 'w0rp/ale'
 Plug 'mbbill/undotree'
 Plug 'phpactor/phpactor', {'for': 'php', 'do': 'composer install'}
+Plug 'HerringtonDarkholme/yats.vim'
 
 call plug#end()
 
@@ -22,7 +23,7 @@ set cursorline " highlight the current line
 set hlsearch " highlight search matches
 set wildmenu " highlight search matches
 set wildmode=list:full,full
-set wildignore+=*/tmp/*,*.swp,*/vendor/*,*/bower_components/*,*/node_modules/*,*/dist/*
+"set wildignore+=*/tmp/*,*.swp,*/vendor/*,*/bower_components/*,*/node_modules/*,*/dist/*
 set ttyfast " enables faster redrawing
 set ruler " ensure the ruler is on
 set laststatus=2
@@ -51,16 +52,16 @@ nnoremap j gj
 nnoremap k gk
 nnoremap Y y$
 
+
 cnoremap <C-a> <Home>
 cnoremap <C-x><C-a> <C-A>
 cnoremap <C-k> <C-\>e getcmdpos() == 1 ? '' : getcmdline()[:getcmdpos()-2]<CR>
 cnoremap <A-Left> <S-Left>
 cnoremap <A-Right> <S-Right>
+nnoremap <silent> [w :ALEPrevious<CR>
+nnoremap <silent> ]w :ALENext<CR>
 
 nmap <C-j> <Plug>(dirvish_up)
-nmap <C-p> :FZF<CR>
-" this works in neovim
-nmap <M-Enter> <Plug>(dirvish_up)
 
 """ Leader """"
 let mapleader = " "
@@ -68,6 +69,17 @@ nnoremap <Leader><Leader> :Commands<CR>
 nnoremap <Leader>fs :w<CR>
 nnoremap <Leader>fed :edit $MYVIMRC<CR>
 nnoremap <Leader>feR :source $MYVIMRC<CR>
+
+nnoremap <Leader>p :FZF<CR>
+nnoremap <Leader>n :Rg!<CR>
+nnoremap <Leader>k :Rg!<C-r><C-w><CR>
+
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gl :Glog<CR>
+nnoremap <Leader>gs :Gstatus<CR>
+
+noremap <Leader>; :
+noremap : :echom "Use your leader"<CR>
 
 """ Local leader """"
 
@@ -85,6 +97,7 @@ nnoremap <C-h> :echom "C-h is unbound"<CR>
 nnoremap <C-k> :echom "C-k is unbound"<CR>
 nnoremap <C-m> :echom "C-m is unbound"<CR>
 nnoremap <C-n> :echom "C-n is unbound"<CR>
+nnoremap <C-p> :echom "C-p is unbound"<CR>
 nnoremap <C-q> :echom "C-q is unbound"<CR>
 nnoremap <C-s> :echom "C-s is unbound"<CR>
 nnoremap s :echom "s is unbound"<CR>
