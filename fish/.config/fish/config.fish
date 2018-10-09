@@ -42,7 +42,7 @@ set fish_greeting
 
 set -x EDITOR vim
 
-if test -d $HOME/.npm/global/bin
+if test -d $HOME/.npm-global/bin
   set -x PATH $PATH $HOME/.npm-global/bin
 end
 
