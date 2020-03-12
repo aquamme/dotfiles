@@ -1,7 +1,10 @@
 call plug#begin('~/.vim/plugs')
 
 Plug 'junegunn/fzf.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'justinmk/vim-dirvish'
+Plug 'bhurlow/vim-parinfer'
+Plug 'tpope/vim-fireplace'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
@@ -85,6 +88,7 @@ noremap : :echom "Use your leader"<CR>
 
 let maplocalleader = ","
 autocmd Filetype php nnoremap <LocalLeader>m :call phpactor#ContextMenu()<CR>
+autocmd FileType clojure nnoremap cpo :Eval<CR>
 
 """""""""""""""""""""""""""""
 "" Unused/duplicated keys """
@@ -96,13 +100,13 @@ nnoremap <C-g> :echom "C-g is unbound"<CR>
 nnoremap <C-h> :echom "C-h is unbound"<CR>
 nnoremap <C-k> :echom "C-k is unbound"<CR>
 nnoremap <C-m> :echom "C-m is unbound"<CR>
-nnoremap <C-n> :echom "C-n is unbound"<CR>
+"nnoremap <C-n> :echom "C-n is unbound"<CR>
 nnoremap <C-p> :echom "C-p is unbound"<CR>
 nnoremap <C-q> :echom "C-q is unbound"<CR>
 nnoremap <C-s> :echom "C-s is unbound"<CR>
 nnoremap s :echom "s is unbound"<CR>
 nnoremap S :echom "S is unbound"<CR>
-nnoremap K :echom "K is unbound"<CR>
+"nnoremap K :echom "K is unbound"<CR>
 
 """""""""""""""""""""""""""""""
 
