@@ -43,7 +43,7 @@ bindsym $mod+space        exec --no-startup-id j4-dmenu-desktop --dmenu="dmenu $
 
 set $mode_launcher [f]ile manager | [l]ock | [t]erminal 
 set $mode_screenshot Screenshot: [a]ll screens | foc[u]sed window | [s]elect area 
-set $mode_displays [a]uto | [d]esk
+set $mode_displays [a]uto | [d]esk | [h]ome
 
 bindsym $mod+h            focus left
 bindsym $mod+j            focus down
@@ -130,6 +130,7 @@ mode "$mode_screenshot" {
 mode "$mode_displays" {
     bindsym a exec "xrandr --auto"; mode "default"
     bindsym d exec ".screenlayout/desk.sh"; mode "default"
+    bindsym h exec ".screenlayout/home.sh"; mode "default"
     
     bindsym Return mode "default"
     bindsym Escape mode "default"
