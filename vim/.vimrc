@@ -88,7 +88,11 @@ noremap : :echom "Use your leader"<CR>
 
 let maplocalleader = ","
 autocmd Filetype php nnoremap <LocalLeader>m :call phpactor#ContextMenu()<CR>
+autocmd Filetype php nnoremap <LocalLeader>tf :! "docker-compose exec app vendor/bin/phpunit --filter='" + expand('%:t:r') + "'"<CR>
+autocmd FileType php setlocal omnifunc=phpactor#Complete
+
 autocmd FileType clojure nnoremap cpo :Eval<CR>
+let g:phpactorOmniError = v:true
 
 """""""""""""""""""""""""""""
 "" Unused/duplicated keys """
