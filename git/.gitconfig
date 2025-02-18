@@ -2,7 +2,8 @@
     name = Aaron Quamme
     email = aaron.quamme@gmail.com
 [core]
-    editor = emacsclient -t -c
+    editor = vim
+    excludesfile = /Users/aaronquamme/.gitignore
 [alias]
     b = branch
     c = commit
@@ -22,3 +23,17 @@
     undo-commit = reset --soft HEAD^
 [status]
     showUntrackedFiles = all
+[init]
+	defaultBranch = main
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[pager]
+	branch = false
+[push]
+	autoSetupRemote = true
+	default = current
+[rerere]
+	enabled = true
